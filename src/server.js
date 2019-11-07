@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.post("/download", async function(req, res) {
   const { images } = req.body;
-  if (!images)
+  if (!images || !images.length)
     return res.status(400).json({ message: "No image url was provided" });
 
   const downloadPromises = images.map((url, index) =>

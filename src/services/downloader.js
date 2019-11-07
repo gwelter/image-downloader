@@ -3,13 +3,13 @@ import fs from "fs";
 import path from "path";
 
 export async function downloadFile(url, filename) {
-  const fileExtension = url.split(".").slice(-1);
+  const fileExtension = url.match(/\.(png|jpg|jpeg|gif)/g) || ".png";
   const file = path.resolve(
     __dirname,
     "..",
     "..",
     "files",
-    `${filename}.${fileExtension}`
+    `${filename}${fileExtension}`
   );
 
   const response = await axios.get(url, {
