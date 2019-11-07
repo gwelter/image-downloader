@@ -19,7 +19,7 @@ export async function downloadFile(url, filename) {
   response.data.pipe(fs.createWriteStream(file));
   return new Promise((resolve, reject) => {
     response.data.on("end", () => {
-      resolve();
+      resolve(`${filename}${fileExtension}`);
     });
 
     response.data.on("error", error => {

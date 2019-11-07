@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { downloadFile } from "./services/downloader";
+import { zip } from "./services/compresser";
 
 const app = express();
 app.use(cors());
@@ -16,8 +17,17 @@ app.post("/download", async function(req, res) {
   );
 
   Promise.allSettled(downloadPromises).then(all => {
-    console.log(all);
-    res.end();
+    const filesPath = all
+      .filter(({ value }) => !!value)
+      .map(result => result.value);
+
+    zip(filesPath)
+      .then(() => {
+        res.json({ filesPath });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   });
 });
 
