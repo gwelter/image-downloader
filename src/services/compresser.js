@@ -30,7 +30,7 @@ export function zip(files) {
     });
 
     archive.on("finish", function() {
-      resolve();
+      resolve("images.zip");
     });
 
     files.forEach(filename => {
