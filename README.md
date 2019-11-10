@@ -6,7 +6,7 @@ Simple application that downloads a list of images e compress them into a zip fi
 
 The application will run on port 3333
 
-POST -> /download with a array of image links, i.e.
+POST -> /download with an array of image links, i.e.
 {
   images: ["https://image.shutterstock.com/image-photo/bright-spring-view-cameo-island-260nw-1048185397.jpg"]
 }
